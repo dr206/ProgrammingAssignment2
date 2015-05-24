@@ -93,7 +93,7 @@ cacheSolve <- function(makeCacheMatrix, ...) {
         # 'makeCacheMatrix' is local to the environment of a cacheSolve object.
         
         # 'makeCacheMatrix' contains a 'matrix' variable.
-        # The current value of the inverse of 'matrix' is stored.
+        # The current value of the inverse stored in 'makeCacheMatrix' is stored.
         inverse <- makeCacheMatrix$getInverse()
         
         # Cached route - If the 'inverse' value is not NULL
