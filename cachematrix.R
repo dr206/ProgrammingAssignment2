@@ -27,7 +27,7 @@
 #  * Hence, the absense of error checking for non-zero determinant.       * 
 ################################################################################
 
-# The function parameter has been rename from 'x' to 'matrix' for clarity.
+# The function parameter has been renamed from 'x' to 'matrix' for clarity.
 makeCacheMatrix <- function(matrix = matrix()) {
   
         # 'matrix' is local to the environment of a makeCacheMatrix object.
@@ -75,7 +75,39 @@ makeCacheMatrix <- function(matrix = matrix()) {
 
 
 ## Write a short comment describing this function
+################################################################################
+#  cacheSolve() takes in a makeCacheMatrix object and returns the inverse of the
+#      matrix provided. There are two possible routes taken:
+#      - 'cached'     : the makeCacheMatrix object has the value of inverse
+#                       already stored.
+#      - 'calculated' : the makeCacheMatrix object has the value NULL for the
+#                       inverse. The solve() function is finds the inverse of
+#                       matrix. This inverse is assigned to makeCacheMatrix
+#                       object, and the inverse is returned.
+################################################################################
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+# The function parameter has been renamed from 'x' to 'makeCacheMatrix' for clarity.
+cacheSolve <- function(makeCacheMatrix, ...) {
+  
+        # 'makeCacheMatrix' is local to the environment of a cacheSolve object.
+        
+        # 'makeCacheMatrix' contains a 'matrix' variable.
+        # The current value of the inverse of 'matrix' is stored.
+        inverse <- makeCacheMatrix$getInverse()
+        
+        # Cached route - If the 'inverse' value is not NULL
+        if(!is.null(inverse)) {
+                message("getting cached data")
+                # The value 'inverse' is returned from the function early.
+                # Function call ends here.
+                return(inverse)
+        }
+        
+        # Calculated route - If the 'inverse' value is NULL
+        matrix <- makeCacheMatrix$get()
+        inverse <- solve(matrix, ...)
+        makeCacheMatrix$setInverse(inverse)
+
+        ## Returns a matrix that is the (Calculated) inverse of 'matrix'
+        inverse
 }
