@@ -6,7 +6,8 @@
 ##  makeCacheMatrix() creates an advanced matrix structure that has the capacity
 ##      to store both a matrix and the inverse of that matrix.
 ##
-##  cacheSolve() -
+##  cacheSolve() takes in a makeCacheMatrix object and returns the inverse of
+##      the matrix variable of the makeCacheMatrix object provided.
 ##
 ################################################################################
 ################################################################################
@@ -105,7 +106,7 @@ cacheSolve <- function(makeCacheMatrix, ...) {
         
         # Calculated route - If the 'inverse' value is NULL
         matrix <- makeCacheMatrix$get()
-        inverse <- solve(matrix, ...)
+        inverse <- solve(data, ...)
         makeCacheMatrix$setInverse(inverse)
 
         ## Returns a matrix that is the (Calculated) inverse of 'matrix'
